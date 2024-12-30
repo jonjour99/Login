@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .btn_wrap {
+      margin-top: 20px;
+    }
+
+    .btn_wrap1 button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: grey;
+      color: #fff;
+      outline: none;
+    }
+
+    .btn_wrap button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      outline: none;
+    }
+
+    .btn_wrap button:hover {
+      background-color: #0056b3;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: none;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+<h1>메인 페이지</h1>
+<hr>
+<ul>
+  <li>ID: <span th:text="${id}"></span></li>
+  <li><span th:text="${role}"></span></li>
+</ul>
+<div class="btn_wrap1" th:if="${#authorization.expression('isAuthenticated()')}">
+  <button type="button" th:onclick="|location.href='@{/user}'|">사용자 페이지</button>
+  <button type="button" th:onclick="|location.href='@{/admin}'|">관리자 페이지</button>
+</div>
+<div class="btn_wrap1" th:unless="${#authorization.expression('isAuthenticated()')}">
+</div>
+<hr>
+<div class="btn_wrap" th:if="${#authorization.expression('isAuthenticated()')}">
+  <div>
+    <form th:action="@{/withdraw}" method="post">
+      <button type="button" th:onclick="|location.href='@{/logout}'|">로그아웃</button>
+      <button type="submit">회원 탈퇴</button>
+    </form>
+  </div>
+</div>
+<div class="btn_wrap" th:unless="${#authorization.expression('isAuthenticated()')}">
+  <button type="button" th:onclick="|location.href='@{/login}'|">로그인</button>
+  <button type="button" th:onclick="|location.href='@{/join}'|">회원가입</button>
+</div>
+</body>
+</html>

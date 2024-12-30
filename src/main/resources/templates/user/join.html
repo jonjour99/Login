@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <style>
+    /* 필요한 CSS 스타일을 여기에 추가하세요 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+
+    form {
+      display: inline-block;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="text"], input[type="password"], input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h2>회원가입</h2>
+<form action="/joinProc" method="post" name="joinForm">
+  <input type="text" name="username" placeholder="Username"/>
+  <input type="password" name="password" placeholder="Password"/>
+  <input type="submit" value="Join"/>
+</form>
+</body>
+</html>
